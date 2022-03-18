@@ -6,7 +6,10 @@ import {
   resetPassword,
   confirmToken,
   newPassword,
+  profile,
 } from "../controllers/userController.js";
+
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router();
 
@@ -23,5 +26,7 @@ router
   .route("/reset-password/:token")
   .get(confirmToken) // Reset password con Token
   .post(newPassword); // Recibir nueva password
+
+router.get("/profile", checkAuth, profile);
 
 export default router;

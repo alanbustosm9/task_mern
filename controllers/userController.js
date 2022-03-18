@@ -116,4 +116,14 @@ const newPassword = async (req, res) => {
   }
 };
 
-export { register, auth, confirm, resetPassword, confirmToken, newPassword };
+const profile = async (req, res) => {};
+
+export {
+  register,
+  auth,
+  confirm,
+  resetPassword,
+  confirmToken,
+  newPassword,
+  profile,
+};
