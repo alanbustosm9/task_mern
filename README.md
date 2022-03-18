@@ -1,4 +1,4 @@
-# Task MERN :fire:
+# Task MERN Backend :fire:
 
 ## Libraries and Depedencies
 
