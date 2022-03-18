@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const projectSchema = mongoose.schema({
+const projectSchema = mongoose.Schema({
   name: {
     type: String,
     trim: true,
