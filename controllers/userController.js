@@ -46,6 +46,7 @@ const auth = async (req, res) => {
     });
   } else {
     const error = new Error("La contraseña es incorrecta");
+    return res.status(403).json({ msg: error.message });
   }
 };
 
