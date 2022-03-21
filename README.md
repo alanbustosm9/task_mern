@@ -9,6 +9,7 @@
 5. [bcrypt](https://www.npmjs.com/package/bcrypt)
 6. [jwt](https://www.npmjs.com/package/jsonwebtoken)
 7. [cors](https://www.npmjs.com/package/cors)
+8. [nodemailer](https://nodemailer.com/about/)
 
 
 ## Developer :smiley: Alan Bustos Mora

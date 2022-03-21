@@ -2,6 +2,8 @@ import User from "../models/User.js";
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
 
+import { emailRegister } from "../helpers/nodemailer.js";
+
 const register = async (req, res) => {
   // Evitar registro duplicado
   const { email } = req.body;
@@ -15,6 +17,8 @@ const register = async (req, res) => {
     const user = new User(req.body);
     user.token = generateId();
     await user.save();
+    // Enviar email de confirmacion
+    emailRegister({ name: user.name, email: user.email, token: user.token });
     res.json({
       msg: "Usuario creado correctamente, por favor revise su email para confirmar la cuenta",
     });
