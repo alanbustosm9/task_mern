@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
 
-import { emailRegister } from "../helpers/nodemailer.js";
+import { emailRegister, emailRecoverPassword } from "../helpers/nodemailer.js";
 
 const register = async (req, res) => {
   // Evitar registro duplicado
@@ -85,8 +85,14 @@ const resetPassword = async (req, res) => {
   }
 
   try {
-    usuario.token = generateId();
+    user.token = generateId();
     await user.save();
+    // Enviar email de recuperacion
+    emailRecoverPassword({
+      email: user.email,
+      name: user.name,
+      token: user.token,
+    });
     res.json({ msg: "Hemos enviado un email con las intrucciones" });
   } catch (error) {
     console.log(error);

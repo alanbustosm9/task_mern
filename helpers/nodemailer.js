@@ -13,7 +13,6 @@ export const emailRegister = async (data) => {
   });
 
   // Informacion del email
-
   const info = await transport.sendMail({
     from: '"UpTask - Administrator de Proyectos " <cuentas@uptask.com>',
     to: email,
@@ -23,6 +22,34 @@ export const emailRegister = async (data) => {
         <p>Tu cuenta ya casi esta lista, solo debes comprobarla en el siguiente enlance: </p>
             <a href="${process.env.FRONTEND_URL}/confirm/${token}">Confirmar Cuenta</a>
         <p>Si tu no creaste esta cuenta, puedes ignorar este correo</p>
+
+        `,
+  });
+};
+
+export const emailRecoverPassword = async (data) => {
+  const { email, name, token } = data;
+
+  // TODO: Mover hacia variable de entorno
+  const transport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "044bbbcdd37620",
+      pass: "8ad0594ace379e",
+    },
+  });
+
+  // Informacion del email
+  const info = await transport.sendMail({
+    from: '"UpTask - Administrator de Proyectos " <cuentas@uptask.com>',
+    to: email,
+    subject: "Uptask - Reestablece tu password",
+    text: "Reestablece tu password",
+    html: `<p>${name} has solicitado reestablecer tu password</p>
+        <p>Sigue el siguiente enlace para generar una nueva password: </p>
+            <a href="${process.env.FRONTEND_URL}/recover-password/${token}">Reestablecer password</a>
+        <p>Si tu no solicitaste reestablecer tu password, puedes ignorar este correo</p>
 
         `,
   });
