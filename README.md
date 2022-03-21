@@ -8,6 +8,7 @@
 4. [dotenv](https://www.npmjs.com/package/dotenv)
 5. [bcrypt](https://www.npmjs.com/package/bcrypt)
 6. [jwt](https://www.npmjs.com/package/jsonwebtoken)
+7. [cors](https://www.npmjs.com/package/cors)
 
 
 ## Developer :smiley: Alan Bustos Mora
