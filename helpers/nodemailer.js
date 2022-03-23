@@ -4,11 +4,11 @@ export const emailRegister = async (data) => {
   const { email, name, token } = data;
 
   const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
     auth: {
-      user: "044bbbcdd37620",
-      pass: "8ad0594ace379e",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
@@ -30,13 +30,12 @@ export const emailRegister = async (data) => {
 export const emailRecoverPassword = async (data) => {
   const { email, name, token } = data;
 
-  // TODO: Mover hacia variable de entorno
   const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
     auth: {
-      user: "044bbbcdd37620",
-      pass: "8ad0594ace379e",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
@@ -48,7 +47,7 @@ export const emailRecoverPassword = async (data) => {
     text: "Reestablece tu password",
     html: `<p>${name} has solicitado reestablecer tu password</p>
         <p>Sigue el siguiente enlace para generar una nueva password: </p>
-            <a href="${process.env.FRONTEND_URL}/recover-password/${token}">Reestablecer password</a>
+            <a href="${process.env.FRONTEND_URL}/reset-password/${token}">Reestablecer password</a>
         <p>Si tu no solicitaste reestablecer tu password, puedes ignorar este correo</p>
 
         `,
